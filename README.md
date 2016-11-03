@@ -109,7 +109,8 @@ To use the SDK in your own code, You can copy `api.py` in your own stack. It is 
 implementaton of all the api, which internally calls the liveensure API using `requests`.
 
 This can be used as follows:
-- Create LiveEnsure object
+
+- Create LiveEnsure object (required)
 
 ```  
   # api_key is the API key for liveensure
@@ -122,7 +123,7 @@ This can be used as follows:
   liveAuthObj = LiveEnsure("<api_key>", "<api_password>", "<agent_id>", "<host_to_access_api>")
 ```
 
-- Start session
+- Start session (required)
 
 ```      
   # email is the userid for which authentication is to be done
@@ -133,7 +134,8 @@ This can be used as follows:
   It will return JSON object which have the `sessionToken`, that will be used in all subsequent calls.
   
 
-- Add factors
+- Add factors (optional)
+
     * Add knowledge challenge
 
           ```          
@@ -169,19 +171,28 @@ This can be used as follows:
             # touches number of touch points up to 6
             liveAuthObj.addTouchChallenge('<orientation>', '<touches>', '<sessionToken>')
           ```
-- Get the code
+- Get the session token (required)
 
 ```
 liveAuthObj.getAuthObj("<TYPE>", "<sessionToken>")
 ```
 
-- poll for status
+- Create the login object/link to scan or tap (required)
+
+```
+TBD ....
+```
+This is the moment the user scans or taps on mobile to authenticate
+and performs their authentication factors as configured above. 
+During this process you may poll for status in the background.
+
+- Poll for session status (required)
 
 ```      
 liveAuthObj.pollStatus('<sessionToken>')
 ```
 
-- delete user
+- Delete user (optional)
 
 ```    
   # email: email of the user that is to be deleted
