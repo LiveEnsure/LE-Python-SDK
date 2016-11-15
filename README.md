@@ -89,19 +89,46 @@ can see it from their phone if need be (ifconig -a, find IP, etc)
 
 ### Desktop/Browser Authentication via Mobile Scan
 
-Walk through each factor and how to test/engage desktop with mobile
+Walk through each factor tab and how to test/engage desktop with mobile scan.
 
-```
-Give an examples
-```
+[1] To test to basic device authentication factor, simply click [DEVICE] tab,
+enter your email and click login. Scan screen to authenticate. 
+
+On your first login, you will get an emailed OOB token to enter/register in app.
+
+[2] To test knowledge challenge, click the [Knowledge] tab, enter your email and
+choose a challenge question and anwner/response. This is teeing up the API, as the
+end-user would not see this. Then click and scan, enter response to challenge
+in the device, to authenticate. 
+
+[3] To test location, click the [Location] challenge, enter email and click
+the map to register your current lat/long. If you want location to pass,
+simply login, scan and pass location proximity test. If you want it to fail,
+drag the map to an alternate location, login and fail due to proximity difference.
+
+[4] To test behavior, click the [Behavior] tab and choose an orientation, and a 
+grid pattern (up to 2 places) for single or multi-touch on the device. 
+
+Click login and touch and hold the desired locations AS YOU SCAN, until it beeps. 
+To fail, tap wrong locations on the screen or release before you scan. 
+
+In the demo you can only choose one factor per test, but in the full API SDK
+you can add multiple challenges in combination as needed.
 
 ### App to App Mobile Authentication via App Only
 
-Walk thorugh each factor and how to test/engage from mobile only
+Walk thorugh each factor and how to test/engage from mobile browser to
+the mobile app, from app-to-app (no QR scan).
 
-```
-Give an examples
-```
+First, access the demos from a mobile browser on iOS on Android.
+
+For the mobile demos, repeat the steps as above, except you will rollover
+from mobile browser to app to authenticate after each "login" press/tap.
+
+For behavior, you must hold the touch locations while and until the clock sweeps,
+since there is no scan.
+
+The rest of the demos function as they do in the desktop version.
 
 ## Using the SDK with your own stack/app/code
 
