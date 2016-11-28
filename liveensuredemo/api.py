@@ -67,7 +67,7 @@ class LiveEnsureApi:
         maxAt = "1"                 # Max retries
 
         details = {"orientation":orientation,
-                   "touches":[1,2], 
+                   "touches":touches, 
                    "regionCount":regionCount,
                    "required":required, 
                    "fallbackChallengeID":fallback, 
