@@ -86,10 +86,10 @@ function poll() {
 
 	timeout = setTimeout(function() {
 		console.log("clear timeout called");
-		$("#qr-img").attr("src", "/static/liveensuredemo/img/failure.png");
+		$("#qr-img").attr("src", "/static/liveensuredemo/img/timeout.jpg");
 		clearInterval(clear);
 		dfd.resolve();
-	}, 1000 * 2 * 60);
+	}, 1000 * 10);
 
 	return dfd.promise();
 }
