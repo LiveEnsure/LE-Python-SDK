@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^device', views.device, name="device"),
     url(r'^behaviour', views.behaviour, name="behaviour"),
     url(r'^location', views.location, name="location"),
+    url(r'^register', views.register, name="register"),
     url(r'^init-session', views.liveSessionStart, name="initSession"),
     url(r'^get-code', views.getCode, name="getCode"),
     url(r'^poll-status', views.pollStatus, name="pollStatus"),
