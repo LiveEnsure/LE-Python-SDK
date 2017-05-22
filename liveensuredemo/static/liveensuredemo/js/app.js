@@ -30,6 +30,7 @@ function getQRCode() {
 }
 
 function registerConsumer() {
+    // register live consumer
     url = "http://localhost:8000/live-consumer-pvt-ws/admin/consumer/register"
     appendToRequestBox(url, "POST")
 
