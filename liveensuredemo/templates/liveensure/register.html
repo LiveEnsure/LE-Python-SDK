@@ -1,0 +1,32 @@
+{% extends 'liveensure/new_layout.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-sm-6">
+    <h2 class="text-center" style="margin-top:20px">Register Consumer</h2>
+	<form id = "register_form" action="{% url 'index' %}" method="post" class = " text-center marginTop-20">
+		<div class="form-group">
+				{% csrf_token %}
+				<label class ="label-modify col-sm-12" for="key">First Name:</label>
+				<input class="form-control form-control-width-change col-sm-12" name="firstName" type="text">
+				<label class ="label-modify marginTop-20 col-sm-12" for="text">Last Name:</label>
+				<input class="form-control form-control-width-change marginTop-20 col-sm-12" name="lastName" type="text">
+				<label class ="label-modify marginTop-20 col-sm-12" for="text">Email:</label>
+				<input name="email" class="form-control form-control-width-change marginTop-20 col-sm-12" type="text">
+
+				<button id="register" type="submit" class="btn btn-default btn-modified marginTop-20">Submit</button>
+		</div>
+	</form>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="{% static 'liveensuredemo/js/app.js' %}"></script>
+<script>
+		$(document).ready(function() {
+			$("#register").click(function(e) {
+				e.preventDefault();
+				registerConsumer();
+			});
+		});
+
+</script>
+{% endblock %}
