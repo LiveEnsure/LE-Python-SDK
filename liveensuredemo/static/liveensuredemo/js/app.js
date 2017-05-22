@@ -29,6 +29,20 @@ function getQRCode() {
 	});
 }
 
+function registerConsumer() {
+    url = "http://localhost:8000/live-consumer-pvt-ws/admin/consumer/register"
+    appendToRequestBox(url, "POST")
+
+    return $.post(url, $("#register_form").serialize(), function(response){
+        appendToResponseBox(url, "POST", JSON.stringify(response, 4))
+        url = "http://localhost:8000/live-consumer-pvt-ws/admin/consumer/
+        $(location).attr('href', 'main');
+    })
+    .fail(function(response) {
+        appendToResponseBox(response.responseText, "", "")
+    });
+}
+
 function addPromptChallenge() {
 	$("#question-sessionToken").val(localStorage.getItem('sessionToken'));
 	appendToRequestBox("/host/challenge", "PUT")
