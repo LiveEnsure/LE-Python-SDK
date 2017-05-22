@@ -9,33 +9,89 @@
 </head>
 
 <body>
-    <header class="text-center">
-        <h1 class="heading"> LiveEnsure <sup> &reg; </sup>. Live.</h1>
-        <p class="sub-heading"> Real-time authentication solution demo with your mobile device. </p>
-    </header>
+<header class="text-center">
+    <h1 class="heading"> LiveEnsure <sup> &reg; </sup>. Live.</h1>
+    <p class="sub-heading"> Real-time authentication solution demo with your mobile device. </p>
+</header>
+<div class="col-sm-3">
+    <p class="text-left marginTop-40"> Please enter your email</p>
+    <input id="email" class="form-control form-control-width-change" name="email" type="text">
+    <button type="submit" id="email_btn" class="btn btn-default btn-modified marginTop-20" style="display: block;">Submit</button>
 
-    <div id="content">
-    	<p class="text-center marginTop-40"> Please copy API credentials from your email received from LiveEnsure, paste in below form and save to proceed to the demo. </p>
-		<form action="{% url 'index' %}" method="post" class = "col-md-offset-3 col-md-6 text-center marginTop-20">
-			<div class="form-group">
-			{% csrf_token %}
-			<label class ="label-modify" for="key">API Key:</label>
-			<input class="form-control form-control-width-change" name="api_key" type="text">
-			<label class ="label-modify marginTop-20" for="password">API Password:</label>
-			<input class="form-control form-control-width-change marginTop-20" name="api_password" type="password">
-			<label class ="label-modify marginTop-20" for="id">Agent ID:</label>
-			<input name="agent_id" class="form-control form-control-width-change marginTop-20" type="text">
-
-            <label class ="label-modify marginTop-20" for="id">Google Map Key:</label>
-            <input name="map_key" class="form-control form-control-width-change marginTop-20" type="text">
-			<button type="submit" class="btn btn-default btn-modified marginTop-20">Save</button>
-			</div>
-		</form>
+    <div class="alert alert-info marginTop-20" id="email_not_exist_msg" style="display: None">
+        <strong> Email does not exist, please register. </strong>
     </div>
-    
-    <script type="text/javascript" src="{% static 'liveensuredemo/js/jquery-1.12.3.min.js' %}"></script>
-    <script src="{% static 'liveensuredemo/js/bootstrap.min.js' %}"></script>
-    <script>
+    <div class="alert alert-danger marginTop-20" id="invalid_email" style="display: None">
+        <strong> Invalid email id </strong>
+    </div>
+
+    <div id="registerDiv" class="btn-group marginTop-20" style="display: None">
+        <a href="/live-demo/register" class="btn btn-white btn-default active">
+            <i class="fa fa-cog" aria-hidden="true"></i> Register Consumer
+        </a>
+    </div>
+
+</div>
+<div id="content" class="col-sm-9">
+    <p class="text-center marginTop-40"> Please copy API credentials from your email received from LiveEnsure, paste in
+        below form and save to proceed to the demo. </p>
+    <form action="{% url 'index' %}" method="post" class="col-md-offset-3 col-md-6 text-center marginTop-20">
+        <div class="form-group">
+            {% csrf_token %}
+            <label class="label-modify" for="key">API Key:</label>
+            <input class="form-control form-control-width-change" id="api" name="api_key" type="text">
+            <label class="label-modify marginTop-20" for="password">API Password:</label>
+            <input class="form-control form-control-width-change marginTop-20" id="pass" name= "api_password" type="password">
+            <label class="label-modify marginTop-20" for="id">Agent ID:</label>
+            <input id="agent" name="agent_id"  class="form-control form-control-width-change marginTop-20" type="text">
+            <input id="email_id" name="email" type="hidden">
+            <button type="submit" class="btn btn-default btn-modified marginTop-20">Save</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="{% static 'liveensuredemo/js/jquery-1.12.3.min.js' %}"></script>
+<script src="{% static 'liveensuredemo/js/bootstrap.min.js' %}"></script>
+<script>
+        function isValidEmailAddress(emailAddress) {
+                var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+                return pattern.test(emailAddress);
+            };
+
+        $("#email_btn").click(function(e){
+            // call Consumer API
+            e.preventDefault();
+            email = $("#email").val();
+            $("#email_not_exist_msg").css("display", "None");
+            is_valid = isValidEmailAddress(email);
+            if(is_valid) {
+                $("#invalid_email").css("display", "None");
+                $("#api").val('');
+                $("#pass").val('');
+                $("#agent").val('');
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8000/live-consumer-pvt-ws/admin/consumer/getConsumerCredential/"+ email,
+                    success: function(result) {
+                        console.log(result);
+                        $("#api").val(result.host_ws_signature);
+                        $("#pass").val(result.host_ws_password);
+                        $("#agent").val(result.instance_uuid);
+                        $("#email_id").val(email);
+                    },
+                    error: function(result) {
+                        $("#email_not_exist_msg").css("display", "block");
+                        $("#registerDiv").css("display", "block")
+                    }
+                });
+            }
+            else {
+                $("#invalid_email").css("display", "block");
+            }
+
+        });
+
         var agentId = "{{agentId}}";
         var urls = {
             host: "",
@@ -73,7 +129,8 @@
                 }
             }
         });
-    </script>
-    {% block javascripts %}{% endblock %}
+
+</script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>

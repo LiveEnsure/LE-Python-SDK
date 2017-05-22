@@ -13,10 +13,16 @@
 </head>
 
 <body>
-    <header class="text-center">
-        <h1 class="heading"> LiveEnsure<sup>&reg;</sup> SDK</h1>
-        <!-- <p class="sub-heading"> Real-time authentication solution demo with your mobile device. </p> -->
-    </header>
+    <div class="col-md-12">
+        <div class="col-md-6 text-right">
+            <h1 class="heading">LiveEnsure<sup>&reg;</sup> SDK</h1>
+        </div>
+        <div class="col-md-6">
+            <h5 class="heading text-right">{{email}}</h5>
+            <h5 class="heading text-right"><a id="logout" href="">Logout</a></h5>
+        </div>
+    </div>
+    <div class="clearfix"></div>
 
     <div id="content">
         {% block content %}{% endblock %}
@@ -80,6 +86,8 @@
             getCode: "{% url 'getCode' %}",
             pollStatus: "{% url 'pollStatus' %}",
         };
+
+        $("#logout").attr("href", "main");
 
         function getCookie(name) {
             var cookieValue = null;
