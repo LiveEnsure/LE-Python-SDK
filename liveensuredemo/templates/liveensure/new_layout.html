@@ -13,33 +13,23 @@
 </head>
 
 <body>
-    <div class="col-md-12">
-        <div class="col-md-6 text-right">
-            <h1 class="heading">LiveEnsure<sup>&reg;</sup> SDK</h1>
-        </div>
-        <div class="col-md-6">
-            <h5 class="heading text-right">{{email}}</h5>
-            <h5 class="heading text-right"><a id="logout" href="">Logout</a></h5>
-        </div>
-    </div>
-    <div class="clearfix"></div>
+    <header class="text-center">
+        <h1 class="heading"> LiveEnsure<sup>&reg;</sup> SDK</h1>
+        <!-- <p class="sub-heading"> Real-time authentication solution demo with your mobile device. </p> -->
+    </header>
 
     <div id="content">
         {% block content %}{% endblock %}
-    <div class = "col-sm-3 marginLeft-xs-15">
-        <p> <strong> 2. Scan and Authenticate </strong> </p>
-        <img id="qr-img" src = "">
-        <img style="margin-left: 20px" id="result-img" src = "" class = "marginTop-40">
-    </div>
-    <form class = "col-sm-6">
+
+    <form class = "col-sm-6" style="margin-top:20px">
       <div class="form-group form-group-modified">
       <div class="row">
         <div class="col-sm-12">
             <h2> Debug Console </h2>
         </div>
-      </div>    
+      </div>
       <div class="row row-margin">
-        <div class="col-sm-12"> 
+        <div class="col-sm-12">
             <label class ="label-modify" for="url">Host URL:</label>
             <input value="{{host}}" readonly class="form-control form-control-width-change" type="text">
         </div>
@@ -85,9 +75,8 @@
             addLocationChallenge: "{% url 'addLocationChallenge' %}",
             getCode: "{% url 'getCode' %}",
             pollStatus: "{% url 'pollStatus' %}",
+            registerConsumer: "{% url 'register' %}",
         };
-
-        $("#logout").attr("href", "main");
 
         function getCookie(name) {
             var cookieValue = null;
