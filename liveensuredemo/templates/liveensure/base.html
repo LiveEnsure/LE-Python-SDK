@@ -87,7 +87,10 @@
             pollStatus: "{% url 'pollStatus' %}",
         };
 
-        $("#logout").attr("href", "main");
+        $("#logout").click(function(e){
+            e.preventDefault();
+            window.location = "https://45.79.175.75:8000/live/main";
+        });
 
         function getCookie(name) {
             var cookieValue = null;

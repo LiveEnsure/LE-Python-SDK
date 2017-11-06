@@ -26,7 +26,7 @@
     </div>
 
     <div id="registerDiv" class="btn-group marginTop-20" style="display: None">
-        <a href="/live-demo/register" class="btn btn-white btn-default active">
+        <a href="register" class="btn btn-white btn-default active">
             <i class="fa fa-cog" aria-hidden="true"></i> Register Consumer
         </a>
     </div>
@@ -44,7 +44,7 @@
             <input class="form-control form-control-width-change marginTop-20" id="pass" name= "api_password" type="password">
             <label class="label-modify marginTop-20" for="id">Agent ID:</label>
             <input id="agent" name="agent_id"  class="form-control form-control-width-change marginTop-20" type="text">
-            <input id="email_id" name="email" type="hidden">
+            <input id="email_id" name="email_id" type="hidden">
             <button type="submit" class="btn btn-default btn-modified marginTop-20">Save</button>
         </div>
     </form>
@@ -71,11 +71,11 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "/live-consumer-pvt-ws/admin/consumer/getConsumerCredential/"+ email,
+                    url: "https://sandbox.liveensure.com/live-consumer-pvt/admin/consumer/getConsumerCredential/"+ email,
                     success: function(result) {
-                        $("#api").val(result.host_ws_signature);
-                        $("#pass").val(result.host_ws_password);
-                        $("#agent").val(result.instance_uuid);
+                        $("#api").val(result.consumer_credential.hostSiteWebServiceSignature);
+                        $("#pass").val(result.consumer_credential.hostSiteWebServicePassword);
+                        $("#agent").val(result.consumer_credential.agentUuid);
                         $("#email_id").val(email);
                     },
                     error: function(result) {

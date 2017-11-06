@@ -30,12 +30,13 @@ function getQRCode() {
 }
 
 function registerConsumer() {
-    url = "/live-consumer-pvt-ws/admin/consumer/register"
+
+    url = "/live-consumer-pvt/admin/consumer/register"
     appendToRequestBox(url, "POST")
 
     return $.post(url, $("#register_form").serialize(), function(response){
         appendToResponseBox(url, "POST", JSON.stringify(response, 4))
-        url = "/live-consumer-pvt-ws/admin/consumer/"
+        url = "/live-consumer-pvt/admin/consumer/"
         $(location).attr('href', 'main');
     })
     .fail(function(response) {
