@@ -117,7 +117,7 @@ you can add multiple challenges in combination as needed.
 
 ### App to App Mobile Authentication via App Only
 
-Walk thorugh each factor and how to test/engage from mobile browser to
+Walk through each factor and how to test/engage from mobile browser to
 the mobile app, from app-to-app (no QR scan).
 
 First, access the demos from a mobile browser on iOS on Android.
@@ -133,7 +133,7 @@ The rest of the demos function as they do in the desktop version.
 ## Using the SDK with your own stack/app/code
 
 To use the SDK in your own code, You can copy `api.py` in your own stack. It is a class based
-implementaton of all the api, which internally calls the liveensure API using `requests`.
+implementation of all the api, which internally calls the liveensure API using `requests`.
 
 This can be used as follows:
 
@@ -153,7 +153,7 @@ This can be used as follows:
 - Start session (required)
 
 ```      
-  # email is the userid for which authentication is to be done
+  # email is the user id for which authentication is to be done
 
   liveAuthObj.initSession("<email>")
 ```
@@ -178,8 +178,8 @@ This can be used as follows:
     * Add location challenge
 
           ```
-            # lat is lattitude of location
-            # lang is the langitude of the location
+            # lat is latitude of location
+            # lang is the longitude of the location
             # radius is the radius limit of location authentication
             
             liveAuthObj.addPromptChallenge('<lat>', '<lang>', <radius>, '<sessionToken>')
@@ -254,4 +254,6 @@ Visit http://www.liveensure.com for more information.
 * Web: http://www.liveensure.com 
 * Dev: http://developer.liveensure.com
 * Support: http://support.liveensure.com 
+
+=======
 
