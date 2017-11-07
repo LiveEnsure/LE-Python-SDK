@@ -1,1 +1,7 @@
 **/*.pyc
+*.swp
+*.sqlite
+.idea/
+build/
+dist/
+django_liveensuredemo.egg-info/
