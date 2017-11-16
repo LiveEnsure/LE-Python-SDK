@@ -156,7 +156,7 @@ def addLocationChallenge(request):
 def logout(request):
     request.session.flush()
     auth_views.logout
-    return render(request, "liveensure/register.html", {"host": get_host()})
+    return render(request, "liveensure/settings.html", {"host": get_host()})
 
 
 def get_host():
