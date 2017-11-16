@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-6">
             <h5 class="heading text-right">{{email}}</h5>
-            <h5 class="heading text-right"><a id="logout" href="">Logout</a></h5>
+            <h5 class="heading text-right"><a id="logout" href="{% url 'logout' %}">Logout</a></h5>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -88,9 +88,9 @@
             logout: "{% url 'logout' %}",
         };
 
-       $("#logout").click(function(e){
+       /*$("#logout").click(function(e){
             window.location.href = urls.logout;
-        });
+        }); */
 
         function getCookie(name) {
             var cookieValue = null;
