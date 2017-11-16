@@ -167,5 +167,5 @@ def get_host():
 
     host = '45.79.175.75:8000'
     if hasattr(settings, "ALLOWED_HOSTS"):
-        host = settings['ALLOWED_HOSTS']+":8000"
+        host = settings.ALLOWED_HOSTS[0]+":8000"
     return host
