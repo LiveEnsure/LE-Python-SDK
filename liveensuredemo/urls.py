@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^add-prompt-challenge', views.addPromptChallenge, name="addPromptChallenge"),
     url(r'^add-behaviour-challenge', views.addBehaviourChallenge, name="addBehaviourChallenge"),
     url(r'^add-location-challenge', views.addLocationChallenge, name="addLocationChallenge"),
-    url(r'^logout', auth_views.logout, {'template_name': 'liveensure/register.html'}, name='logout'),
+    #url(r'^logout', auth_views.logout, {'template_name': 'liveensure/register.html'}, name='logout'),
+    url(r'^logout', views.logout, name='logout'),
 ]

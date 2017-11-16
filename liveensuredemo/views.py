@@ -3,15 +3,16 @@ from django.http import HttpResponse
 from django.conf import settings
 from .api import *
 from .const import const as c
+from django.contrib.auth import views as auth_views
 
 
 # Create your views here.
 def index(request):
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         request.session['api_key'] = request.POST['api_key']
         request.session['api_password'] = request.POST['api_password']
         request.session['agent_id'] = request.POST['agent_id']
-        if ('map_key' in request.POST):
+        if 'map_key' in request.POST:
             request.session['map_key'] = request.POST['map_key']
         else:
             request.session['map_key'] = settings.LIVE_ENSURE["GOOGLE_MAP_KEY"]
@@ -31,7 +32,7 @@ def index(request):
 
 
 def device(request):
-    if ("api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session):
+    if "api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session:
         return redirect('index')
     else:
         return render(request, "liveensure/device.html",
@@ -45,7 +46,7 @@ def device(request):
 
 
 def behaviour(request):
-    if ("api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session):
+    if "api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session:
         return redirect('index')
     else:
         return render(request, "liveensure/behaviour.html",
@@ -58,7 +59,7 @@ def behaviour(request):
 
 
 def knowledge(request):
-    if ("api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session):
+    if "api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session:
         return redirect('index')
     else:
         return render(request, "liveensure/knowledge.html",
@@ -71,7 +72,7 @@ def knowledge(request):
 
 
 def location(request):
-    if ("api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session):
+    if "api_key" not in request.session or "api_password" not in request.session or "agent_id" not in request.session:
         return redirect('index')
     else:
         return render(request, "liveensure/location.html",
@@ -93,14 +94,14 @@ def register(request):
 
 def _getHost():
     host = "https://app.liveensure.com/live-identity"
-    if (hasattr(settings, "LIVE_ENSURE") and settings.LIVE_ENSURE["API_HOST"]):
+    if hasattr(settings, "LIVE_ENSURE") and settings.LIVE_ENSURE["API_HOST"]:
         host = settings.LIVE_ENSURE["API_HOST"]
     return host
 
 
 def _getMapKey(request):
     map_key = "NO_KEY"
-    if (hasattr(settings, "LIVE_ENSURE") and "GOOGLE_MAP_KEY" in settings.LIVE_ENSURE):
+    if hasattr(settings, "LIVE_ENSURE") and "GOOGLE_MAP_KEY" in settings.LIVE_ENSURE:
         map_key = settings.LIVE_ENSURE["GOOGLE_MAP_KEY"]
     elif "map_key" in request.session:
         map_key = request.session['map_key']
@@ -111,11 +112,6 @@ def createLiveObject(request):
     live = LiveEnsureApi(request.session["api_key"], request.session["api_password"], request.session["agent_id"],
                          _getHost())
     return live
-
-
-def createLiveConsumerObject(request):
-    consumer = LiveConsumerAPI()
-    return consumer
 
 
 def liveSessionStart(request):
@@ -155,3 +151,21 @@ def addLocationChallenge(request):
     live = createLiveObject(request)
     re = live.addLocationChallenge(request.POST["lat"], request.POST["lang"], 10, request.POST["sessionToken"])
     return HttpResponse(re, content_type="application/json")
+
+
+def logout(request):
+    request.session.flush()
+    auth_views.logout
+    return render(request, "liveensure/register.html", {"host": get_host()})
+
+
+def get_host():
+    """
+    Get host ip where this portal runs
+    :return: 
+    """
+
+    host = '45.79.175.75:8000'
+    if hasattr(settings, "ALLOWED_HOSTS"):
+        host = settings['ALLOWED_HOSTS']+":8000"
+    return host
