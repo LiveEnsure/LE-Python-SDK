@@ -34,7 +34,7 @@ function registerConsumer() {
     url = "/live-consumer-pvt/admin/consumer/register"
     appendToRequestBox(url, "POST")
 
-    return $.post(url, $("#register_form").serialize(), function(response){
+    return $.post(urls.registerConsumer, $("#register_form").serialize(), function(response){
         appendToResponseBox(url, "POST", JSON.stringify(response, 4))
         url = "/live-consumer-pvt/admin/consumer/"
         $(location).attr('href', 'main');
