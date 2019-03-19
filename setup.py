@@ -16,8 +16,8 @@ setup(
     description='A simple Django app to run the demo for Liveensure SDK',
     long_description=README,
     url='http://www.liveensure.com/',
-    author='Christian Hessler',
-    author_email='christian@liveensure.com',
+    author='Live Ensure',
+    author_email='shout@liveensure.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
