@@ -21,7 +21,7 @@ For questions about this SDK or LiveEnsure® authentication, visit support.livee
 ## Getting Started
 
 * **First,** sign up at http://www.liveensure.com/signup.html for your developer API keys.
-* **Second,** download the free LiveEnsure app for iOS or Android http://www.liveensure.com/app.html
+* **Second,** download the free LiveEnsure app for iOS or Android http://www.liveensure.com
 * **Third,** download, configure and run this SDK on your local or networked machine as instructed.
 
 ### Prerequisites
@@ -246,7 +246,7 @@ Current Version: **0.01**
 
 ## License
 
-This project is proprietary software (c) 2016 LiveEnsure Inc. 
+This project is proprietary software (c) 2020 LiveEnsure Inc. 
 Visit http://www.liveensure.com for more information.
 
 ## Contact
